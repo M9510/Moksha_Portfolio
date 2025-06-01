@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Me</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0b0f2b;
+      color: white;
+    }
+
+    header {
+      background-color: #161b35;
+      padding: 15px 0px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0, 255, 255, 0.1);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #00f7ff;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 300;
+      position: relative;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    nav a:nth-child(1) { animation-delay: 0.2s; }
+    nav a:nth-child(2) { animation-delay: 0.3s; }
+    nav a:nth-child(3) { animation-delay: 0.4s; }
+    nav a:nth-child(4) { animation-delay: 0.5s; }
+    nav a:nth-child(5) { animation-delay: 0.6s; }
+    nav a:nth-child(6) { animation-delay: 0.7s; }
+    nav a:nth-child(7) { animation-delay: 0.8s; }
+
+    .contact-box {
+      background-color: #161b35;
+      padding: 40px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0 0 20px rgba(0,255,255,0.2);
+      animation: fadeIn 1.2s ease-in-out;
+      position: relative;
+      margin: 120px auto 40px; /* Adjusted for navbar height */
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    h2 span {
+      color: #00f7ff;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      background-color: #252a4a;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      color: white;
+      resize: none;
+    }
+
+    input:focus, textarea:focus {
+      outline: 2px solid #00f7ff;
+    }
+
+    .message-area {
+      grid-column: 1 / -1;
+    }
+
+    .whatsapp-container {
+      position: relative;
+    }
+
+    .whatsapp-icon {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 22px;
+      cursor: pointer;
+    }
+
+    .whatsapp-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .email-container {
+      position: relative;
+    }
+
+    .email-icon {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 22px;
+      cursor: pointer;
+    }
+
+    .rocket {
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+      width: 30px;
+      animation: floatRocket 2s infinite ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatRocket {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Portfolio.</div>
+    <nav>
+      <a href="Profile.html">Profile</a>
+      <a href="portfolio_INDEX.html">Home</a>
+      <a href="About.html">About</a>
+      <a href="Skills.html">Skills</a>
+      <a href="MyProject.html">MyProject</a>
+      <a href="Contect.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="contact-box">
+    <h2>Contact <span>Me!</span></h2>
+    <div class="form-grid">
+      <input type="text" value="Moksha" readonly />
+      <input type="text" value="Suthar" readonly />
+      
+      <div class="whatsapp-container">
+        <a class="whatsapp-link" href="https://wa.me/9510954869" target="_blank">
+          <input type="text" value="9510954869" readonly />
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" class="whatsapp-icon" alt="WhatsApp" />
+        </a>
+      </div>
+
+      <div class="email-container">
+        <a href="mailto:mokshasuthar9@gmail.com" style="display: block;">
+          <input type="email" value="mokshasuthar9@gmail.com" readonly />
+          <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" class="email-icon" alt="Email" />
+        </a>
+      </div>
+
+      <textarea class="message-area" rows="5" placeholder="Leave your messages here."></textarea>
+    </div>
+
+    <img src="https://cdn-icons-png.flaticon.com/512/3218/3218607.png" alt="Rocket" class="rocket" />
+  </div>
+
+</body>
+</html>

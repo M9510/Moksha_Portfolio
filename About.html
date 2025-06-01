@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Me Section</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ✅ Correct Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #1c1f2e;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+      height: 100vh;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #1c1f2e;
+    }
+
+    .navbar .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .navbar .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .navbar .nav-links a:hover {
+      color: #00f2ff;
+    }
+
+    /* Main Content */
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 90%;
+      margin: 80px auto 0;
+    }
+
+    .circle {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      border: 5px solid #00f2ff;
+      box-shadow: 0 0 30px #00f2ff;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 20px #00f2ff; }
+      to { box-shadow: 0 0 40px #00f2ff; }
+    }
+
+    .text-content {
+      max-width: 500px;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      transform: translateX(-100%);
+      opacity: 0;
+      animation: swipeLeft 1s forwards;
+      animation-delay: 0.5s;
+    }
+
+    .title span {
+      color: #00f2ff;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      font-weight: 600;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+      animation-delay: 1.5s;
+    }
+
+    .description {
+      margin-top: 10px;
+      font-size: 15px;
+      line-height: 1.5;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+      animation-delay: 2.5s;
+    }
+
+    .button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #00f2ff;
+      color: #000;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px #00f2ff;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+      animation-delay: 3.5s;
+    }
+
+    .rocket {
+      position: absolute;
+      bottom: 30px;
+      right: 50px;
+      font-size: 40px;
+      color: #00f2ff;
+      animation: fly 2s ease-in-out infinite;
+      z-index: 10;
+    }
+
+    @keyframes swipeLeft {
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fly {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">Portfolio.</div>
+    <div class="nav-links">
+      <a href="portfolio_INDEX.html">Home</a>
+      <a href="About.html">About</a>
+      <a href="Skills.html">Skills</a>
+      <a href="MyProject.html">MyProject</a>
+      <a href="Contect.html">Contact</a>
+    </div>
+  </nav>
+
+  <!-- About Me Section -->
+  <div class="container">
+    <div class="circle"></div>
+
+    <div class="text-content">
+      <div class="title">About <span>Me</span></div>
+      <div class="subtitle">Frontend Developer & Backend Developer</div>
+      <div class="description">
+        Front end Developer to create websites, designing, developments.
+        And Back end Developer to create Dashboard at analysis data, database designing,
+        visualized and also Filtering data.
+      </div>
+      <button class="button">See more</button>
+    </div>
+  </div>
+
+  <!-- 🚀 Rocket Icon -->
+  <div class="rocket">
+    <i class="fas fa-rocket"></i>
+  </div>
+
+</body>
+</html>

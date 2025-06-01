@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Skills</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #1c1d2b;
+      color: white;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+      nav a {
+      color: #ffffff;
+      margin-left: 30px;
+      text-decoration: none;
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    nav a:nth-child(1) { animation-delay: 0.5s; }
+    nav a:nth-child(2) { animation-delay: 0.7s; }
+    nav a:nth-child(3) { animation-delay: 0.9s; }
+    nav a:nth-child(4) { animation-delay: 1.1s; }
+    nav a:nth-child(5) { animation-delay: 1.3s; }
+    nav a:nth-child(6) { animation-delay: 1.5s; }
+
+    header {
+      text-align: center;
+      padding: 2em 0 1em;
+      flex-shrink: 0;
+    }
+
+    header h1 {
+      font-size: 3em;
+      font-weight: bold;
+    }
+
+    header h1 .highlight {
+      color: #00ffff;
+    }
+
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      flex-grow: 1;
+    }
+
+    .skill-box {
+      background-color: #2a2b3d;
+      padding: 20px;
+      width: 300px;
+      border-radius: 20px;
+      position: relative;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+      transition: 0.3s;
+    }
+
+    .skill-box:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+    }
+
+    .skill-box h3 {
+      margin-top: 0;
+    }
+
+    .skill-box button {
+      background-color: #00ffff;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .plus-icon {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background-color: #00ffff;
+      color: black;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      font-size: 1.5em;
+      text-align: center;
+      line-height: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .edit-form {
+      display: none;
+      margin-top: 15px;
+    }
+
+    .edit-form input,
+    .edit-form textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+      border-radius: 10px;
+      border: none;
+      font-size: 1em;
+    }
+
+    .edit-form button {
+      margin-top: 10px;
+      background-color: #00ffff;
+      border: none;
+      border-radius: 15px;
+      padding: 8px 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Add Skill Section */
+    .add-skill-container {
+      width: 300px;
+      background: #222334;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+      user-select: none;
+      transition: 0.3s;
+      margin: 20px auto 40px;
+    }
+
+    .add-skill-container:hover {
+      background: #00ffff;
+      color: black;
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+    }
+
+    .add-skill-container .plus-icon {
+      position: static;
+      width: 50px;
+      height: 50px;
+      font-size: 2.5em;
+      line-height: 50px;
+      color: inherit;
+      background-color: transparent;
+      user-select: none;
+    }
+
+    .add-skill-container span {
+      font-weight: bold;
+      font-size: 1.2em;
+      user-select: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.4);
+      color: #ccc;
+      flex-shrink: 0;
+    }
+
+    /* Certificates Panel */
+    .certificates-panel {
+      width: 350px;
+      background: #2a2b3d;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      color: white;
+      overflow-y: auto;
+      flex-shrink: 0;
+    }
+
+    .certificates-panel h2 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #00ffff;
+    }
+
+    .certificates-panel input[type="file"] {
+      border-radius: 15px;
+      cursor: pointer;
+      padding: 8px;
+      background-color: #00ffff;
+      border: none;
+      color: black;
+      font-weight: bold;
+    }
+
+    .certificate-preview {
+      background: #1c1d2b;
+      border-radius: 15px;
+      padding: 10px;
+      max-height: 200px;
+      overflow: auto;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    }
+
+    .certificate-preview img,
+    .certificate-preview iframe {
+      max-width: 100%;
+      max-height: 180px;
+      border-radius: 10px;
+    }
+
+    .download-btn {
+      background-color: #00ffff;
+      color: black;
+      padding: 10px 15px;
+      border-radius: 15px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      user-select: none;
+      align-self: center;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      body {
+        flex-direction: column;
+      }
+      .certificates-panel {
+        width: 100%;
+        max-height: 300px;
+      }
+      .skills-container, .add-skill-container {
+        width: 100%;
+        justify-content: center;
+      }
+      .skill-box, .add-skill-container {
+        width: 90%;
+        max-width: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+    
+     <header>
+         <!-- Navigation Bar -->
+         <nav class="navbar">
+    <div class="logo">Portfolio.</div>
+    <nav>
+      <a href="Profile.html">Profile</a>
+      <a href="portfolio_INDEX.html">Home</a>
+      <a href="About.html">About</a>
+      <a href="Skills.html">Skills</a>
+      <a href="MyProject.html">MyProject</a>
+      <a href="portfolio_INDEX.html">Portfolio</a>
+      <a href="Contect.html">Contact</a>
+    </nav>
+  </header>
+  
+  <main>
+    <header>
+      <h1>My <span class="highlight">Skills</span></h1>
+    </header>
+
+    <div class="skills-container" id="skillsContainer">
+      <div class="skill-box">
+        <div class="plus-icon" onclick="toggleEdit(this)">+</div>
+        <h3>UI-UX Design</h3>
+        <p>Design for XR, Web pages, sites and templates using Figma, Adobe Ps, Coral Draw.</p>
+        <button>See more</button>
+        <div class="edit-form">
+          <input type="text" placeholder="Edit Title" />
+          <textarea rows="3" placeholder="Edit Description"></textarea>
+          <button onclick="saveEdit(this)">Save</button>
+        </div>
+      </div>
+
+      <div class="skill-box">
+        <div class="plus-icon" onclick="toggleEdit(this)">+</div>
+        <h3>Front End Developer</h3>
+        <p>Create Web pages & designs using HTML, CSS, JS and integrate with backend.</p>
+        <button>See more</button>
+        <div class="edit-form">
+          <input type="text" placeholder="Edit Title" />
+          <textarea rows="3" placeholder="Edit Description"></textarea>
+          <button onclick="saveEdit(this)">Save</button>
+        </div>
+      </div>
+
+      <div class="skill-box">
+        <div class="plus-icon" onclick="toggleEdit(this)">+</div>
+        <h3>Back End Developer</h3>
+        <p>Build APIs, manage servers and databases using Node.js, PHP, Python etc.</p>
+        <button>See more</button>
+        <div class="edit-form">
+          <input type="text" placeholder="Edit Title" />
+          <textarea rows="3" placeholder="Edit Description"></textarea>
+          <button onclick="saveEdit(this)">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Skill Button -->
+    <div class="add-skill-container" onclick="showAddSkillForm()">
+      <div class="plus-icon">+</div>
+      <span>Add Skills</span>
+    </div>
+
+    <footer>
+      &copy; 2025 My Skills Page. All rights reserved.
+    </footer>
+  </main>
+
+  <!-- Certificates Side Panel -->
+  <aside class="certificates-panel">
+    <h2>Certificates</h2>
+    <input type="file" id="certInput" accept="image/*,application/pdf" />
+    <div class="certificate-preview" id="certPreview">
+      <p>No certificate uploaded yet.</p>
+    </div>
+    <button class="download-btn" id="downloadCertBtn" style="display:none;" onclick="downloadCertificate()">Download Certificate</button>
+  </aside>
+
+  <!-- Add Skill Modal (hidden by default) -->
+  <div id="addSkillModal" style="display:none; position: fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:1000;">
+    <div style="background:#2a2b3d; padding:30px; border-radius:20px; width: 320px; box-shadow: 0 0 20px rgba(0,255,255,0.5); position: relative;">
+      <h2 style="color:#00ffff; text-align:center; margin-top:0;">Add New Skill</h2>
+      <input type="text" id="newSkillTitle" placeholder="Skill Title" style="width:100%; padding:8px; margin-bottom:10px; border-radius:10px; border:none; font-size:1em;" />
+      <textarea id="newSkillDesc" rows="4" placeholder="Skill Description" style="width:100%; padding:8px; border-radius:10px; border:none; font-size:1em;"></textarea>
+      <div style="display:flex; justify-content:space-between; margin-top:15px;">
+        <button onclick="addNewSkill()" style="background:#00ffff; color:black; border:none; border-radius:15px; padding:10px 20px; font-weight:bold; cursor:pointer;">Add Skill</button>
+        <button onclick="closeAddSkillForm()" style="background:#ff0044; color:white; border:none; border-radius:15px; padding:10px 20px; font-weight:bold; cursor:pointer;">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Toggle edit form for existing skill box
+    function toggleEdit(icon) {
+      const box = icon.parentElement;
+      const editForm = box.querySelector(".edit-form");
+      const currentTitle = box.querySelector("h3").innerText;
+      const currentDesc = box.querySelector("p").innerText;
+
+      if(editForm.style.display === "block") {
+        editForm.style.display = "none";
+      } else {
+        // Close any other open edit forms first
+        document.querySelectorAll(".edit-form").forEach(form => (form.style.display = "none"));
+
+        editForm.style.display = "block";
+        editForm.querySelector("input").value = currentTitle;
+        editForm.querySelector("textarea").value = currentDesc;
+      }
+    }
+
+    // Save edits to existing skill box
+    function saveEdit(button) {
+      const editForm = button.parentElement;
+      const box = editForm.parentElement;
+
+      const newTitle = editForm.querySelector("input").value.trim();
+      const newDesc = editForm.querySelector("textarea").value.trim();
+
+      if (newTitle && newDesc) {
+        box.querySelector("h3").innerText = newTitle;
+        box.querySelector("p").innerText = newDesc;
+        editForm.style.display = "none";
+      } else {
+        alert("Both fields are required.");
+      }
+    }
+
+    // Show Add Skill modal
+    function showAddSkillForm() {
+      document.getElementById("addSkillModal").style.display = "flex";
+      // Clear inputs
+      document.getElementById("newSkillTitle").value = "";
+      document.getElementById("newSkillDesc").value = "";
+    }
+
+    // Close Add Skill modal
+    function closeAddSkillForm() {
+      document.getElementById("addSkillModal").style.display = "none";
+    }
+
+    // Add new skill box dynamically
+    function addNewSkill() {
+      const title = document.getElementById("newSkillTitle").value.trim();
+      const desc = document.getElementById("newSkillDesc").value.trim();
+
+      if (!title || !desc) {
+        alert("Please enter both title and description.");
+        return;
+      }
+
+      // Create skill box element
+      const skillBox = document.createElement("div");
+      skillBox.className = "skill-box";
+
+      skillBox.innerHTML = `
+        <div class="plus-icon" onclick="toggleEdit(this)">+</div>
+        <h3>${title}</h3>
+        <p>${desc}</p>
+        <button>See more</button>
+        <div class="edit-form">
+          <input type="text" placeholder="Edit Title" value="${title}" />
+          <textarea rows="3" placeholder="Edit Description">${desc}</textarea>
+          <button onclick="saveEdit(this)">Save</button>
+        </div>
+      `;
+
+      document.getElementById("skillsContainer").appendChild(skillBox);
+      closeAddSkillForm();
+    }
+
+    // Certificates Upload & Preview
+    const certInput = document.getElementById("certInput");
+    const certPreview = document.getElementById("certPreview");
+    const downloadBtn = document.getElementById("downloadCertBtn");
+
+    let uploadedCertURL = null;
+    let uploadedCertName = null;
+
+    certInput.addEventListener("change", function () {
+      const file = this.files[0];
+      if (!file) return;
+
+      uploadedCertName = file.name;
+
+      // Revoke old URL if exists
+      if (uploadedCertURL) {
+        URL.revokeObjectURL(uploadedCertURL);
+      }
+
+      const fileURL = URL.createObjectURL(file);
+      uploadedCertURL = fileURL;
+
+      certPreview.innerHTML = "";
+
+      if (file.type.startsWith("image/")) {
+        // Show image preview
+        const img = document.createElement("img");
+        img.src = fileURL;
+        img.alt = "Certificate Image";
+        certPreview.appendChild(img);
+      } else if (file.type === "application/pdf") {
+        // Show pdf preview using iframe
+        const iframe = document.createElement("iframe");
+        iframe.src = fileURL;
+        iframe.width = "100%";
+        iframe.height = "180";
+        iframe.title = "Certificate PDF";
+        certPreview.appendChild(iframe);
+      } else {
+        certPreview.innerHTML = "<p>Preview not available for this file type.</p>";
+      }
+
+      downloadBtn.style.display = "inline-block";
+    });
+
+    function downloadCertificate() {
+      if (!uploadedCertURL) return;
+
+      const a = document.createElement("a");
+      a.href = uploadedCertURL;
+      a.download = uploadedCertName || "certificate";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+  </script>
+</body>
+</html>
